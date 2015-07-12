@@ -40,8 +40,14 @@ windows:
                 - cd ~/.vim_runtime/
                 - ggpull
   - mux: 
-    - cd ~/.tmuxinator/
-    - vi .
+        layout: main-horizontal
+        panes:
+            - mux:
+                - cd ~/.tmuxinator/
+                - vi .
+            - git:
+                - cd ~/.tmuxinator/
+                - ggpull
   - longcmds: 
     - cd ~/scripts/
     - vi long_cmd.sh
