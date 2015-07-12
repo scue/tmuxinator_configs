@@ -1,0 +1,47 @@
+# ~/.tmuxinator/configs.yml
+
+name: configs
+root: ~/configs/
+
+# Optional tmux socket
+socket_name: bash
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+tmux_options: -2 -f ~/.tmux.conf.bash
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: longcmds
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t configs
+
+windows:
+  - configs: cd ~/configs/ && ggpull
+  - scripts: cd ~/scripts/ && ggpull
+  - vimrc: 
+        layout: main-horizontal
+        panes:
+            - vimrc:
+                - cd ~/.vim_runtime/
+                - vim my_configs.vim
+            - git:
+                - cd ~/.vim_runtime/
+                - ggpull
+  - mux: 
+    - cd ~/.tmuxinator/
+    - vi .
+  - longcmds: 
+    - cd ~/scripts/
+    - vi long_cmd.sh
