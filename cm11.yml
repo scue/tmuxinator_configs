@@ -2,7 +2,7 @@ name: cm11
 root: /media/Source/cm11
 socket_name: bash
 pre_window: source build/envsetup.sh && lunch cm_stuttgart-eng
-tmux_options: -2 -f ~/.tmux.conf.bash
+tmux_options: -2 -u -f ~/.tmux.conf.bash
 windows:
     - build:
         layout: main-horizontal
