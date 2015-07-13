@@ -1,0 +1,55 @@
+# ~/.tmuxinator/vdi_serial.yml
+
+name: vdi_serial
+root: ~/tmp/
+
+# Optional tmux socket
+socket_name: bash
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+tmux_options: -2 -u -f ~/.tmux.conf.bash
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t vdi_serial
+
+windows:
+  - shell:
+      # `tmux list-windows` to get layout
+      layout: 7ae1,140x47,0,0[140x31,0,0,130,140x15,0,32{83x15,0,32,134,56x15,84,32[56x6,84,32,135,56x8,84,39,139]}]
+      panes:
+          - shell:
+              - 
+          - lsusb: 
+              - watchd lsusb
+          - ttyUSB: 
+              - watchd 'ls /dev/ttyUSB*'
+  - serial1: 
+      layout: 0ed2,140x47,0,0[140x32,0,0,15,140x14,0,33,20]
+      panes:
+          -  
+          - adb devices
+  - serial2: 
+      layout: 0ed2,140x47,0,0[140x32,0,0,15,140x14,0,33,20]
+      panes:
+          -  
+          - adb devices
+  - serial2: 
+      layout: 0ed2,140x47,0,0[140x32,0,0,15,140x14,0,33,20]
+      panes:
+          -  
+          - adb devices
