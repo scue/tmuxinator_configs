@@ -1,6 +1,6 @@
 # ~/.tmuxinator/vdi_serial.yml
 
-name: vdi_serial
+name: serial
 root: ~/tmp/
 
 # Optional tmux socket
@@ -19,7 +19,7 @@ tmux_options: -2 -u -f ~/.tmux.conf.bash
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-# startup_window: logs
+startup_window: shell
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
@@ -29,8 +29,7 @@ tmux_options: -2 -u -f ~/.tmux.conf.bash
 
 windows:
   - shell:
-      # `tmux list-windows` to get layout
-      layout: 7ae1,140x47,0,0[140x31,0,0,130,140x15,0,32{83x15,0,32,134,56x15,84,32[56x6,84,32,135,56x8,84,39,139]}]
+      layout: 2bb1,128x45,0,0[128x30,0,0,90,128x14,0,31{77x14,0,31,94,50x14,78,31[50x6,78,31,95,50x7,78,38,99]}]
       panes:
           - shell:
               - 
@@ -48,7 +47,7 @@ windows:
       panes:
           -  
           - adb devices
-  - serial2: 
+  - serial3: 
       layout: 0ed2,140x47,0,0[140x32,0,0,15,140x14,0,33,20]
       panes:
           -  

@@ -1,0 +1,46 @@
+# ~/.tmuxinator/opengrok.yml
+
+name: opengrok
+root: /media/Source/lxr_vdi_source
+
+# Optional tmux socket
+socket_name: bash
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo service docker start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+tmux_options: -2 -u -f ~/.tmux.conf.bash
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: shell
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t opengrok
+
+windows:
+  - Shell:
+  - Trunk: sudo docker run --rm -v /media/Source/lxr_vdi_source/Trunk-Android-OS4C:/src -v /media/Source/lxr_vdi_source/Trunk-Android-OS4C_OpenGrok_Data:/data -p 10450:8080 scue/opengrok:cron
+  - VDI43R1: sudo docker run --rm -v /media/Source/lxr_vdi_source/VDI4.3R1-Android-OS4C:/src -v /media/Source/lxr_vdi_source/VDI4.3R1-Android-OS4C_OpenGrok_Data:/data -p 10431:8080 scue/opengrok:cron
+  - VDI43R2: sudo docker run --rm -v /media/Source/lxr_vdi_source/VDI4.3R2-Android-OS4C:/src -v /media/Source/lxr_vdi_source/VDI4.3R2-Android-OS4C_OpenGrok_Data:/data -p 10432:8080 scue/opengrok:cron
+  - Update: 
+      layout: 9652,128x45,0,0[128x14,0,0,74,128x15,0,15,75,128x14,0,31,76]
+      panes:
+        - VDI43R1:
+            - cd VDI4.3R1-Android-OS4C
+            - env HOME=/media/Source/lxr_vdi_source proxychains svn up
+        - VDI43R2: 
+            - cd VDI4.3R2-Android-OS4C
+            - env HOME=/media/Source/lxr_vdi_source proxychains svn up
+        - Trunk: 
+            - cd Trunk-Android-OS4C
+            - env HOME=/media/Source/lxr_vdi_source proxychains svn up
