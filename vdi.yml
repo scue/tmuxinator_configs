@@ -1,7 +1,7 @@
 name: vdi-os4c
-root: /media/Source/VDI4.3-OS4C
+root: /source/Trunk-Android-OS4C
 socket_name: bash
-pre_window: source master_env.sh && java_home_setup ~/apt/jdk1.6.0_34/ &&  envsetup sangforvdi_rk30-eng
+# pre_window: source master_env.sh && java_home_setup ~/apt/jdk1.6.0_34/ &&  envsetup sangforvdi_rk30-eng
 tmux_options: -2 -u -f ~/.tmux.conf.bash
 windows:
     - build:
@@ -10,9 +10,10 @@ windows:
             - build:
                 - 
             - sync:
-                - proxychains svn update
+                - svn update
                 - 
-    - code: vi .
+    - code: 
+    - kernel: cd kernel
     - device: cd device/rockchip/
     - logcat: 
     - oem: 
