@@ -43,10 +43,8 @@ windows:
         panes:
             - mux:
                 - cd ~/.tmuxinator/
-                - vi .
             - git:
                 - cd ~/.tmuxinator/
                 - ggpull
   - longcmds: 
     - cd ~/scripts/
-    - vi long_cmd.sh
