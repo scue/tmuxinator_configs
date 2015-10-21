@@ -1,7 +1,7 @@
 # ~/.tmuxinator/blogs_175.yml
 
 name: blogs_175
-root: /media/Source/github_pages/feeling-responsive
+root: /source/github_pages/feeling-responsive
 
 # Optional tmux socket
 socket_name: bash
@@ -29,5 +29,6 @@ attach: false
 
 windows:
   - subnet: jekyll serve --config _config.yml,_config_dev.yml -P 2000
-  - myblog: cd /media/Source/github_pages/scue.github.io && jekyll serve -P 4000
+  - myblog: cd /source/github_pages/scue.github.io && jekyll serve -P 4000
+  - vdiMan: cd /docker/gitbook/vdi-test-manual && sudo docker-compose up # 2001
   - station: 
